@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08080d">
+<title>NOVA - One World. One Platform.</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#08080d;color:#fff;
+ font-family:Arial,sans-serif;padding-bottom:85px
+}
+header{
+ padding:22px 18px;display:flex;
+ justify-content:space-between;align-items:center;
+ border-bottom:1px solid #24202e;
+ position:sticky;top:0;background:#08080d;z-index:5
+}
+.logo{font-size:30px;font-weight:900;letter-spacing:4px;
+ background:linear-gradient(90deg,#a66bff,#42c7ff);
+ -webkit-background-clip:text;color:transparent}
+.avatar{background:#241b36;border:1px solid #9c62ff;
+ border-radius:50%;padding:10px}
+main{padding:20px 16px;max-width:650px;margin:auto}
+h1{font-size:29px;margin-bottom:7px}
+.subtitle{color:#9993a7;font-size:13px}
+.hero{
+ margin-top:22px;padding:23px;border-radius:20px;
+ background:linear-gradient(135deg,#211438,#11182d,#101016);
+ border:1px solid #463264
+}
+.hero h2{font-size:23px;margin:0 0 8px}
+.hero p{font-size:13px;color:#c3b6d7;line-height:1.5}
+.tag{color:#c49aff;font-size:11px;letter-spacing:2px}
+.section-title{font-size:18px;margin:27px 0 13px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+.item{
+ background:#15141e;border:1px solid #292638;
+ padding:16px;border-radius:15px;cursor:pointer;
+ transition:.2s
+}
+.item:active{transform:scale(.97)}
+.emoji{font-size:25px}
+.item h3{font-size:14px;margin:10px 0 5px}
+.item p{font-size:11px;color:#9993a7;margin:0}
+.search{
+ width:100%;padding:14px;background:#15141e;
+ color:white;border:1px solid #393047;
+ border-radius:12px;outline:none;margin-top:12px
+}
+.search:focus{border-color:#a66bff}
+.country{
+ padding:13px;margin-top:8px;background:#15141e;
+ border:1px solid #292638;border-radius:11px;
+ cursor:pointer;font-size:14px
+}
+.country:active{border-color:#a66bff}
+nav{
+ position:fixed;bottom:0;left:0;right:0;
+ background:#101016;border-top:1px solid #30283b;
+ display:flex;justify-content:space-around;
+ padding:13px 3px;z-index:10
+}
+nav button{
+ color:#aaa;background:none;border:0;
+ font-size:11px;cursor:pointer
+}
+nav button span{display:block;font-size:20px;margin-bottom:4px}
+nav button.active{color:#bd91ff}
+.page{display:none}
+.page.active{display:block}
+.notice{
+ background:#171522;border-radius:12px;
+ padding:14px;color:#bfb4d1;font-size:12px;
+ margin-top:18px;line-height:1.5
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">NOVA</div>
+ <div class="avatar">✦</div>
+</header>
+
+<main>
+<section class="page active" id="home">
+ <div class="tag">ONE WORLD. ONE PLATFORM.</div>
+ <h1>Explore the Universe.</h1>
+ <div class="subtitle">Connect · Create · Learn · Play · Earn</div>
+
+ <div class="hero">
+  <div class="tag">WELCOME TO NOVA</div>
+  <h2>Your world. Your people.</h2>
+  <p>Meet people, discover knowledge, explore communities and experience something new every day.</p>
+ </div>
+
+ <h2 class="section-title">Discover NOVA</h2>
+ <div class="grid">
+  <div class="item" onclick="showPage('world')">
+   <div class="emoji">🌍</div><h3>World Connect</h3><p>Meet people worldwide</p>
+  </div>
+  <div class="item" onclick="showPage('feed')">
+   <div class="emoji">🎬</div><h3>NOVA Feed</h3><p>Videos and photos</p>
+  </div>
+  <div class="item" onclick="showPage('community')">
+   <div class="emoji">👥</div><h3>Communities</h3><p>Find your interests</p>
+  </div>
+  <div class="item" onclick="showPage('games')">
+   <div class="emoji">🎮</div><h3>NOVA Games</h3><p>Play and compete</p>
+  </div>
+  <div class="item" onclick="showPage('knowledge')">
+   <div class="emoji">🧠</div><h3>Knowledge Hub</h3><p>Discover and learn</p>
+  </div>
+  <div class="item" onclick="showPage('wallet')">
+   <div class="emoji">💎</div><h3>NOVA Wallet</h3><p>Coins and rewards</p>
+  </div>
+ </div>
+ <div class="notice">✨ NOVA is a new world of connections, creativity and knowledge.</div>
+</section>
+
+<section class="page" id="world">
+ <div class="tag">GLOBAL CONNECTION</div>
+ <h1>World Connect 🌍</h1>
+ <p class="subtitle">Choose a country to explore.</p>
+ <input class="search" id="countrySearch" placeholder="🔍 Search any country..." oninput="filterCountries()">
+ <div id="countries"></div>
+</section>
+
+<section class="page" id="feed">
+ <div class="tag">CREATE & DISCOVER</div>
+ <h1>NOVA Feed 🎬</h1>
+ <p class="subtitle">Your video and photo universe.</p>
+ <div class="hero"><h2>Coming soon ✨</h2><p>Video uploads, photos, likes, comments and creator profiles will be added in upcoming versions.</p></div>
+</section>
+
+<section class="page" id="community">
+ <div class="tag">FIND YOUR PEOPLE</div>
+ <h1>Communities 👥</h1>
+ <p class="subtitle">Choose your favourite topics.</p>
+ <div class="grid" id="categories"></div>
+</section>
+
+<section class="page" id="games">
+ <div class="tag">PLAY & COMPETE</div>
+ <h1>NOVA Games 🎮</h1>
+ <div class="hero"><h2>Daily Challenge</h2><p>Games, competitions, leaderboards and daily winners are coming soon.</p></div>
+</section>
+
+<section class="page" id="knowledge">
+ <div class="tag">LEARN SOMETHING NEW</div>
+ <h1>Knowledge Hub 🧠</h1>
+ <div class="hero"><h2>Knowledge is power.</h2><p>Explore science, technology, history, psychology, education and new ideas.</p></div>
+</section>
+
+<section class="page" id="wallet">
+ <div class="tag">YOUR REWARDS</div>
+ <h1>NOVA Wallet 💎</h1>
+ <div class="hero"><h2>0 NOVA Coins</h2><p>Your future gifts, rewards and creator earnings will appear here.</p></div>
+ <div class="notice">Wallet is currently a visual preview. No real money or coins are being stored.</div>
+</section>
+
+<section class="page" id="profile">
+ <div class="tag">YOUR NOVA IDENTITY</div>
+ <h1>My Profile ✨</h1>
+ <div class="hero"><h2>Welcome, Creator!</h2><p>Your profile, followers and account settings will be added in a future version.</p></div>
+</section>
+</main>
+
+<nav>
+ <button class="active" onclick="showPage('home',this)"><span>⌂</span>Home</button>
+ <button onclick="showPage('world',this)"><span>🌍</span>Explore</button>
+ <button onclick="showPage('feed',this)"><span>＋</span>Create</button>
+ <button onclick="showPage('games',this)"><span>🎮</span>Games</button>
+ <button onclick="showPage('profile',this)"><span>♙</span>Profile</button>
+</nav>
+
+<script>
+const countryList=[
+"🇵🇰 Pakistan","🇺🇸 United States","🇬🇧 United Kingdom",
+"🇨🇦 Canada","🇦🇺 Australia","🇦🇪 United Arab Emirates",
+"🇸🇦 Saudi Arabia","🇹🇷 Turkey","🇮🇳 India","🇩🇪 Germany",
+"🇫🇷 France","🇯🇵 Japan","🇰🇷 South Korea","🇨🇳 China",
+"🇧🇷 Brazil","🇿🇦 South Africa","🇮🇹 Italy","🇪🇸 Spain",
+"🇳🇿 New Zealand","🇲🇾 Malaysia","🇮🇩 Indonesia","🇧🇩 Bangladesh",
+"🇳🇬 Nigeria","🇪🇬 Egypt","🇶🇦 Qatar"
+];
+const categoryList=[
+["💻","Technology & AI"],["🎮","Gaming"],
+["🔬","Science"],["📚","Education"],
+["🕌","Religion & Philosophy"],["✍️","Poetry & Literature"],
+["🧠","Psychology"],["💼","Business & Ideas"]
+];
+function filterCountries(){
+ const q=document.getElementById('countrySearch').value.toLowerCase();
+ document.getElementById('countries').innerHTML=countryList
+ .filter(c=>c.toLowerCase().includes(q))
+ .map(c=>`<div class="country" onclick="selectCountry('${c.replace(/'/g,"\\'")}')">${c}　→</div>`).join('');
+}
+function selectCountry(c){
+ alert("You selected "+c+". Country community will be added in a future version!");
+}
+function showPage(id,btn){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ if(btn)btn.classList.add('active');
+ else document.querySelectorAll('nav button')[0].classList.toggle('active',id==='home');
+ window.scrollTo(0,0);
+}
+document.getElementById('categories').innerHTML=categoryList.map(c=>
+`<div class="item" onclick="alert('${c[1]} community feature coming soon!')"><div class="emoji">${c[0]}</div><h3>${c[1]}</h3><p>Explore discussions</p></div>`
+).join('');
+filterCountries();
+</script>
+</body>
+</html>
